@@ -43,7 +43,7 @@ case class `AWS::AutoScaling::LaunchConfiguration`(
   extends Resource[`AWS::AutoScaling::LaunchConfiguration`]{
   def when(newCondition: Option[ConditionRef] = Condition) = copy(Condition = newCondition)
 }
-s
+
 object `AWS::AutoScaling::LaunchConfiguration` extends DefaultJsonProtocol {
   implicit val format: JsonFormat[`AWS::AutoScaling::LaunchConfiguration`] = jsonFormat9(`AWS::AutoScaling::LaunchConfiguration`.apply)
 }
