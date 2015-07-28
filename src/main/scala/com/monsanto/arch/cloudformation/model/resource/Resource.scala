@@ -34,9 +34,15 @@ object Resource extends DefaultJsonProtocol {
         val raw = bar._format.asInstanceOf[JsonFormat[obj.RR]].write(bar)
 
         val mainFields = JsObject(raw.asJsObject.fields - "name" - "Condition" - "DependsOn")
-        val outputFields = mainFields.fields.get("Metadata") match {
+
+        val transformedFields = mainFields.fields.get("Metadata") match {
           case Some(meta) => Map("Type" -> JsString(obj.Type), "Metadata" -> meta, "Properties" -> JsObject(mainFields.fields - "Metadata"))
           case None       => Map("Type" -> JsString(obj.Type),                     "Properties" -> mainFields)
+        }
+
+        val outputFields = mainFields.fields.get("UpdatePolicy") match {
+          case Some(policy) => transformedFields + ("UpdatePolicy" -> policy)
+          case None => transformedFields
         }
 
         val fieldsPlusCondition = obj.Condition.foldLeft(outputFields){ case (fs, c) => fs + ("Condition" -> c.toJson) }
