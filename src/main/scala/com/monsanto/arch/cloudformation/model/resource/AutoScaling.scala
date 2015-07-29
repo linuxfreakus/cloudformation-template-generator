@@ -64,8 +64,9 @@ object `AWS::AutoScaling::ScalingPolicy` extends DefaultJsonProtocol {
   implicit val format: JsonFormat[`AWS::AutoScaling::ScalingPolicy`] = jsonFormat7(`AWS::AutoScaling::ScalingPolicy`.apply)
 }
 
-case class UpdatePolicy(AutoScalingScheduledAction: ScheduledAction, AutoScalingRollingUpdate: AutoScalingRollingUpdate)
-
+case class UpdatePolicy(
+    AutoScalingScheduledAction: ScheduledAction,
+    AutoScalingRollingUpdate: AutoScalingRollingUpdate)
 object UpdatePolicy extends DefaultJsonProtocol {
   implicit val format: JsonFormat[UpdatePolicy] = jsonFormat2(UpdatePolicy.apply)
 }
@@ -80,7 +81,7 @@ case class AutoScalingRollingUpdate(
     MaxBatchSize: Option[Token[Int]] = None,
     MinInstancesInService: Option[Token[Int]] = None,
     PauseTime: Option[Token[String]] = None,
-    SuspendProcesses: Option[Seq[ResourceRef[`AWS::AutoScaling::ScalingPolicy`]]],
+    SuspendProcesses: Option[Seq[Token[String]]] = None,
     WaitOnResourceSignals: Option[Token[Boolean]] = None)
 
 object AutoScalingRollingUpdate extends DefaultJsonProtocol {

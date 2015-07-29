@@ -65,6 +65,9 @@ git.remoteRepo := "git@github.com:linuxfreakus/cloudformation-template-generator
 
 // for bintray
 
+// bintray maven seems to be broken at the moment...
+publishMavenStyle := false
+
 //bintrayOrganization := Some("monsanto")
 
 licenses += ("BSD", url("http://opensource.org/licenses/BSD-3-Clause"))
