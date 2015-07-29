@@ -64,7 +64,7 @@ object `AWS::AutoScaling::ScalingPolicy` extends DefaultJsonProtocol {
   implicit val format: JsonFormat[`AWS::AutoScaling::ScalingPolicy`] = jsonFormat7(`AWS::AutoScaling::ScalingPolicy`.apply)
 }
 
-case class UpdatePolicy(AutoScalingScheduledAction: String, AutoScalingRollingUpdate: String)
+case class UpdatePolicy(AutoScalingScheduledAction: ScheduledAction, AutoScalingRollingUpdate: AutoScalingRollingUpdate)
 
 object UpdatePolicy extends DefaultJsonProtocol {
   implicit val format: JsonFormat[UpdatePolicy] = jsonFormat2(UpdatePolicy.apply)
